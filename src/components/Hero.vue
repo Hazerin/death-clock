@@ -23,7 +23,8 @@
             </button>
         </div>
         <div class="progress-bar">
-            <div>
+            <!--Necessario usare le virgolette singole-->
+            <div :style="{'width': '65%'}">
                 <div>
                     <i class="fa-solid fa-baby"></i>
                     <h6 class="bar-label">Birth</h6>
