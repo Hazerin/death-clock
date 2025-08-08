@@ -11,7 +11,6 @@
   const lifeExpectancy = 80
   const name = 'Alberto'
   const data = calculateTimeLeft(birthDate, lifeExpectancy)
-  console.log(data)
 
   // Si possono passare i props anche impacchettati in un oggetto tramite v-bind.
 
@@ -22,15 +21,14 @@
     data
   }
 
-  console.log(totalProps)
 </script>
 
 <template>
   <Layout>
     <Hero :name="name" :data="data" />
     <!--Il v-bind si passa senza i due punti davanti, in quanto ci aspettiamo già un pacchetto con i props!-->
-    <Clocks v-bind="totalProps" />
-    <Calendar/>
+    <Clocks v-bind="totalProps"/>
+    <Calendar v-bind="totalProps"/>
     <Summary/>
   </Layout>
 </template>

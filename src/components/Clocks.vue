@@ -7,6 +7,7 @@
         data: Object
     })
 
+    // Serve per ottenere di quanto va ruotato l'orologio, inserita la dovuta chiave (snapshot[years])
     let snapshot = getTimePercentage()
 
 </script>
@@ -18,9 +19,10 @@
         <p><i>Time remaining in different units.</i></p>
         <div class="clocks-grid">
             <!-- clock = years, months.. index = 0, 1, 2..-->
-            <div class="card clock-card" v-for="(clock, index) in Object.keys(data)">
-                <div class="circle">
-                    <!--Assegna la classe pari al valore attuale della variabile clock dichiarando true la condizione.-->
+            <div class="card clock-card" v-for="(clock, index) in Object.keys(data)" :key="index">
+                <div class="circle" :style="{rotate: snapshot[clock] + 'deg'}">
+                    <!--Assegna la classe pari al valore attuale della variabile clock dichiarando true la condizione.
+                    La rotazione si riferisce a quanto del singolo anno, mese etc...è passato.-->
                     <div class="ticker"
                     :class="{[clock] : true}">
                     </div>
