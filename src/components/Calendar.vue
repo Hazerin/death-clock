@@ -3,15 +3,15 @@ import { computed } from 'vue';
 
   const {data, lifeExpectancy} = defineProps({
     data: Object,
-    lifeExpectancy: Number,
+    lifeExpectancy: Object,
   })
 
   // Computed fa si che l'assegnazione sia ricacolata quando le dipendenze (variabili all'interno) cambiano.
   // Crea e ritorna un array lungo il parametro di Array (usando lo spread operator) e le chiavi necessarie ad iterare
-  const yearsArr = computed(() => [...Array(lifeExpectancy).keys()])
+  const yearsArr = computed(() => [...Array(lifeExpectancy.value).keys()])
   const weeksArr = [...Array(52).keys()]
-  const weekNum = computed(() => lifeExpectancy * 52 -  parseInt(data['weeks']))
-  const finalWeek = computed(() => lifeExpectancy * 52)
+  const weekNum = computed(() => lifeExpectancy.value * 52 -  parseInt(data.value['weeks']))
+  const finalWeek = computed(() => lifeExpectancy.value * 52)
 
   // Sia per computed che per ref il valore viene inserito nel campo .value
   function getWeeksArr(wksArr, yrIndex) {

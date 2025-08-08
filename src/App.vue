@@ -1,4 +1,5 @@
 <script setup>
+  import { ref } from 'vue';
   import Layout from './components/layouts/Layout.vue';
   import Hero from './components/Hero.vue';
   import Clocks from './components/Clocks.vue';
@@ -7,13 +8,32 @@
 
   import {calculateTimeLeft} from './utils'
 
-  const birthDate = '1991-07-18'
-  const lifeExpectancy = 80
-  const name = 'Alberto'
-  const data = calculateTimeLeft(birthDate, lifeExpectancy)
+  const defaultBD = '1991-07-18'
+  const defaultLE = 80
+
+  const birthDate = ref(defaultBD)
+  const lifeExpectancy = ref(defaultLE)
+  const name = ref('Alberto')
+  const data = ref(calculateTimeLeft(defaultBD, defaultLE))
+
+  const showModal = ref(false)
+  function handleToggleModal() {
+    showModal.value = !showModal.value
+  }
+
+  function handleUpdateData(n, b, e) {
+    if (!n || !b || !r) {return}
+
+    // Salva i nuovi dati nel localstorage del browser
+
+    name.value = n
+    birthDate. value = b
+    lifeExpectancy.value = parseInt(e)
+    data = calculateTimeLeft(b, parseInt(e))
+    showModal.value = false
+  }
 
   // Si possono passare i props anche impacchettati in un oggetto tramite v-bind.
-
   const totalProps = {
     birthDate,
     lifeExpectancy,
