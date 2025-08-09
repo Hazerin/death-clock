@@ -5,8 +5,10 @@
   import Clocks from './components/Clocks.vue';
   import Calendar from './components/Calendar.vue'
   import Summary from './components/Summary.vue';
+  import Form from './components/Form.vue'
 
   import {calculateTimeLeft} from './utils'
+  import Portal from './components/Portal.vue';
 
   const defaultBD = '1991-07-18'
   const defaultLE = 80
@@ -25,7 +27,7 @@
     if (!n || !b || !r) {return}
 
     // Salva i nuovi dati nel localstorage del browser
-
+    
     name.value = n
     birthDate. value = b
     lifeExpectancy.value = parseInt(e)
@@ -45,6 +47,9 @@
 
 <template>
   <Layout>
+    <Portal :handleClodeModal="handleToggleModal" :showModal="showModal">
+      <Form/>
+    </Portal>
     <Hero :name="name" :data="data" />
     <!--Il v-bind si passa senza i due punti davanti, in quanto ci aspettiamo già un pacchetto con i props!-->
     <Clocks v-bind="totalProps"/>
